@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.particles {
+    position: absolute; /* or fixed, depending on your layout */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Ensure this is lower than your text */
+}
+
+.grad {
+    font-family: 'Poppins', sans-serif;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.content {
+    position: relative; /* Ensure your content is positioned */
+    z-index: 2; /* Higher z-index to be above particles */
+}
+  
+.fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+  
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
