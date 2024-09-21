@@ -10,7 +10,7 @@ const projects = [
     description:
       "Johnathan's Blogs is my personal website where I blog and reflect on my own experiences and share insights that I've learned",
     image: "/website.png",
-    github: "https://github.com/hqasmei/thankful-thoughts",
+    github: "https://github.com/AnomalousIdentity/JohnathansBlog",
   },
   {
     name: "Counterfactual Data Analysis",
