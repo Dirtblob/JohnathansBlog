@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Tailwind CSS and Next.js Portfolio
 
 This is a template for creating a portfolio with Tailwind CSS and Next.js.
@@ -16,3 +17,7 @@ Can run the application in VS Code or a terminal and it will be available at `ht
 npm install
 npm run dev
 ```
+=======
+# JohnathansBlog
+A personal website for blogs and more
+>>>>>>> 302ce41faf46932df6281f4936f6d7ba274dfa17
