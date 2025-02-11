@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1 }}
             className="text-2xl font-bold"
           >
-            Johnathan's Blogs
+            Johnathan&apos;s Blogs
           </motion.div>
 
           <div className="flex items-center gap-4">

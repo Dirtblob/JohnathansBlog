@@ -113,7 +113,7 @@ export default function HomePage({ posts }: HomePageProps) {
                   isDarkMode ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
-                I'm Johnathan, and I strive to craft code with creativity
+                I am Johnathan, and I strive to craft code with creativity
               </motion.p>
               <motion.div
                 initial={{ opacity: 0 }}
