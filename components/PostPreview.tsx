@@ -1,18 +1,21 @@
+// components/PostPreview.tsx
+import React from "react";
 import Link from "next/link";
-import { PostMetadata } from "./PostMetadata";
+import { PostMetadata } from "./getPostMetadata";
 
-const PostPreview = (props: PostMetadata) => {
-    return (
-        <Link href={`/posts/${props.slug}`}>
-            <div className="bg-gray-100 dark:bg-gray-500 p-8 rounded-md shadow-md hover:opacity-70" >
-                <div className="text-black dark:text-white">
-                    <p className="text-gray-600 dark:text-gray-300">{props.date}</p>
-                    <h2 className="text-2xl font-bold">{props.title}</h2>
-                    <p>{props.subtitle}</p>
-                </div>
-            </div>
-        </Link>
-    );
+export default function PostPreview({ title, subtitle, date, slug }: PostMetadata) {
+  return (
+    <div className="border border-slate-300 p-4 rounded-md shadow-sm mb-4 bg-white dark:bg-gray-800">
+      <p className="text-xs text-slate-400">{date}</p>
+      {/* Clicking the title or "Read more" goes to /blog/[slug] */}
+      <Link href={`/blog/${slug}`}>
+        <h2 className="text-xl text-black font-bold hover:underline cursor-pointer">
+          {title}
+        </h2>
+      </Link>
+      <p className="text-slate-700 dark:text-slate-300">
+        {subtitle}
+      </p>
+    </div>
+  );
 }
-
-export default PostPreview;

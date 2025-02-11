@@ -1,108 +1,104 @@
-"use client"
-import React from "react"
-import { useState } from "react"
-import { Link } from "react-scroll/modules"
-import { usePathname } from "next/navigation"
-import { useTheme } from "next-themes"
-import { RiMoonFill, RiSunLine } from "react-icons/ri"
-import { IoMdMenu, IoMdClose } from "react-icons/io"
-import ThemeSwitcher from "./ThemeSwitcher"
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Menu, X, Sun, Moon } from 'lucide-react';
+import { useGlobalContext } from '@/context/GlobalContext';
 
-interface NavItem {
-  label: string
-  href: string
-  page: string
-}
+const Navbar: React.FC = () => {
+  const {
+    isDarkMode,
+    setIsDarkMode,
+    activeSection,
+    setActiveSection
+  } = useGlobalContext();
 
-const NAV_ITEMS: Array<NavItem> = [
-  {
-    label: "Home",
-    href: "/",
-    page: "home"
-  },
-  {
-    label: "About",
-    href: "/About",
-    page: "about"
-  },
-  {
-    label: "Blog",
-    href: "/Blog",
-    page: "Blog"
-  },
-  {
-    label: "Projects",
-    href: "/Projects",
-    page: "Projects"
-  },
-]
+  // For a mobile menu, keep local state if you want (only for showing/hiding menu)
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-export default function Navbar() {
-  const { systemTheme, theme, setTheme } = useTheme()
-  const currentTheme = theme === "system" ? systemTheme : theme
-  const pathname = usePathname()
-  const [navbar, setNavbar] = useState(false)
-  
   return (
-    <header className="bg-white bg-opacity-40 w-full mx-auto  px-4 sm:px-20 fixed top-0 z-50 shadow bg-white dark:bg-opacity-40 dark:bg-stone-900 dark:border-b dark:border-stone-600">
-      <div className="justify-between md:items-center md:flex">
-        <div>
-          <div className="flex items-center justify-between py-3 md:py-5 md:block">
-              <div key={"/"} className="container flex items-center space-x-2">
-                <h2 className="text-2xl font-bold">
-                <a href={"/"}>
-                  Johnathan&#39;s Blogs
-                </a>
-                </h2>
-              </div>
-            <div className="md:hidden">
-              <button
-                className="p-2 text-black-700 rounded-md outline-none focus:border-gray-400 focus:border"
-                onClick={() => setNavbar(!navbar)}
-              >
-                {navbar ? <IoMdClose size={30} /> : <IoMdMenu size={30} />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div
-            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-              navbar ? "block" : "hidden"
-            }`}
+    <nav
+      className={`fixed top-0 w-full shadow-sm z-50 transition-colors duration-300 ${
+        isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo / Title */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-2xl font-bold"
           >
-            <div className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-              {NAV_ITEMS.map((item, idx) => {
-                return(
-                  <div key={item.href}>
-                    <a href={item.href}>
-                      {item.label}
-                    </a>
-                  </div>
-                )
-              })}
-              
-              {/* {<ThemeSwitcher />} */}
-              {/* {currentTheme === "dark" ? (
+            Portfolio
+          </motion.div>
+
+          <div className="flex items-center gap-4">
+            {/* Dark Mode Toggle */}
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              className="md:hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+
+            {/* Desktop Nav Buttons */}
+            <div className="hidden md:flex space-x-8">
+              {['home', 'about', 'blog', 'projects'].map((section) => (
                 <button
-                  onClick={() => setTheme("light")}
-                  className="bg-slate-100 p-2 rounded-xl"
+                  key={section}
+                  onClick={() => setActiveSection(section)}
+                  className={`capitalize ${
+                    activeSection === section
+                      ? 'text-blue-600 dark:text-blue-400'
+                      : `${
+                          isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                        } hover:text-blue-600 dark:hover:text-blue-400`
+                  }`}
                 >
-                  <RiSunLine size={25} color="black" />
+                  {section}
                 </button>
-              ) : (
-                <button
-                  onClick={() => setTheme("dark")}
-                  className="bg-slate-100 p-2 rounded-xl"
-                >
-                  <RiMoonFill size={25} color="black" />
-                </button>
-              )} */}
+              ))}
             </div>
           </div>
         </div>
       </div>
-    </header>
-  )
-}
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={`md:hidden ${
+            isDarkMode ? 'bg-gray-800' : 'bg-white text-gray-900'
+          }`}
+        >
+          <div className="px-4 pt-2 pb-3 space-y-1">
+            {['home', 'about', 'blog', 'projects'].map((section) => (
+              <button
+                key={section}
+                onClick={() => {
+                  setActiveSection(section);
+                  setIsMenuOpen(false);
+                }}
+                className={`block w-full text-left px-3 py-2 capitalize ${
+                  isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'
+                }`}
+              >
+                {section}
+              </button>
+            ))}
+          </div>
+        </motion.div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
