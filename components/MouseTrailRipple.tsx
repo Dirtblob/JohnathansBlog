@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-/**
- * Each particle can be a 'trail' (normal follow) or 'ripple' (created on click).
- */
+// Each particle can be trail (mouse moves) or ripple (created on click)
 type Particle = {
   id: number;
   x: number;
@@ -16,9 +14,7 @@ export default function MouseTrailRipple() {
   const [counter, setCounter] = useState<number>(0);
 
   useEffect(() => {
-    /**
-     * Mouse moves create a small "trail" particle
-     */
+    // Mouse moving create small trail particles
     const handleMouseMove = (e: MouseEvent) => {
       setCounter((prev) => {
         const newId = prev + 1;
@@ -33,9 +29,7 @@ export default function MouseTrailRipple() {
       });
     };
 
-    /**
-     * Mouse clicks create a larger "ripple" particle
-     */
+    // Mouse click for a ripple effect
     const handleClick = (e: MouseEvent) => {
       setCounter((prev) => {
         const newId = prev + 1;
@@ -50,20 +44,18 @@ export default function MouseTrailRipple() {
       });
     };
 
-    // Attach listeners at the document or window level
+    // add listeners
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("click", handleClick);
 
-    // Cleanup
+    // clean
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("click", handleClick);
     };
   }, []);
 
-  /**
-   * Prune old particles so the array doesn't grow infinitely
-   */
+  // destroy old particles
   useEffect(() => {
     const interval = setInterval(() => {
       if (particles.length > 150) {
@@ -73,9 +65,7 @@ export default function MouseTrailRipple() {
     return () => clearInterval(interval);
   }, [particles]);
 
-  /**
-   * Framer Motion variants for 'trail' vs. 'ripple'
-   */
+  // Framer Motion variants for 'trail' and 'ripple'
   const variants = {
     trailInitial: { opacity: 1, scale: 1 },
     trailAnimate: {

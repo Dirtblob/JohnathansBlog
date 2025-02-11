@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { BsGithub } from "react-icons/bs";
 
-// Example projects array
 const projects = [
   {
     name: "Johnathan's Blogs",
@@ -31,7 +30,7 @@ export default function ProjectsHome() {
           <hr className="w-6 h-1 mx-auto my-4 bg-teal-500 border-0 rounded" />
         </h1>
         {projects.map((project, idx) => (
-          // Animate each project card
+          // Animate each project
           <motion.div
             key={idx}
             initial={{ opacity: 0, y: 20 }}
@@ -39,7 +38,6 @@ export default function ProjectsHome() {
             transition={{ delay: idx * 0.1 }}
           >
             <div className="my-10 flex flex-col md:flex-row md:space-x-12">
-              {/* Project image */}
               <div className="md:w-1/2">
                 <Link href={project.github}>
                   <Image

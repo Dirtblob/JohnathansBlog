@@ -20,9 +20,7 @@ const skills: Skill[] = [
 ];
 
 export default function AboutHome() {
-  // If your site uses dark mode, you might pass it as a prop or use a global context.
-  // For demonstration, let's assume a local isDarkMode = false.
-  const isDarkMode = false; // Example placeholder
+  const isDarkMode = false;
 
   return (
     <section id="About">

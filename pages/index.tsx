@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { NextPage, GetStaticProps } from 'next';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import FloatingWord from "@/components/FloatingWord";
 import Layout from '@/components/layout';
 import { useGlobalContext } from '@/context/GlobalContext';
 import AboutHome from '@/components/About';
@@ -16,18 +16,10 @@ interface HomePageProps {
 
 export const getStaticProps: GetStaticProps = () => {
     const posts = getPostMetadata();
-    return {
-        props: {
-        posts,
-        },
-    };
+    return { props: {posts, }, };
 };
   
 export default function HomePage({ posts }: HomePageProps) {
-
-// const HomePage: NextPage = () => {
-  // Local states
-
   const {
     isDarkMode,
     activeSection,
@@ -39,22 +31,6 @@ export default function HomePage({ posts }: HomePageProps) {
     "Python", "Java", "JavaScript", 
     "Git", "C++", "Docker", "C"
   ];
-
-  // Floating animation for tech words
-  const floatingAnimation = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 1,
-        repeat: Infinity,
-        repeatType: "reverse" as const,
-        repeatDelay: Math.random() * 2
-      }
-    })
-  };
 
   // Hero text animation
   const heroTextVariants = {
@@ -87,30 +63,16 @@ export default function HomePage({ posts }: HomePageProps) {
           <motion.section
             initial="hidden"
             animate="visible"
-            variants={heroTextVariants}
-            className="py-20 relative overflow-hidden"
+            className="py-40 relative overflow-hidden"
           >
             {/* Floating tech words background */}
-            <div className="absolute inset-0 overflow-hidden">
-              {techWords.map((word, index) => (
-                <motion.div
+            <div className="absolute inset-0">
+              {techWords.map((word) => (
+                <FloatingWord
                   key={word}
-                  custom={index}
-                  variants={floatingAnimation}
-                  initial="hidden"
-                  animate="visible"
-                  style={{
-                    position: 'absolute',
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                    transform: `rotate(${Math.random() * 360}deg)`
-                  }}
-                  className={`pointer-events-none ${
-                    isDarkMode ? 'text-gray-700' : 'text-gray-200'
-                  }`}
-                >
-                  {word}
-                </motion.div>
+                  word={word}
+                  isDarkMode={isDarkMode}
+                />
               ))}
             </div>
 
@@ -140,7 +102,7 @@ export default function HomePage({ posts }: HomePageProps) {
                   transition={{ delay: 0.4 }}
                   className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
                 >
-                  Portfolio
+                  Website
                 </motion.span>
               </motion.h1>
               <motion.p
@@ -151,7 +113,7 @@ export default function HomePage({ posts }: HomePageProps) {
                   isDarkMode ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
-                Crafting code with creativity
+                I'm Johnathan, and I strive to craft code with creativity
               </motion.p>
               <motion.div
                 initial={{ opacity: 0 }}

@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
     setActiveSection
   } = useGlobalContext();
 
-  // For a mobile menu, keep local state if you want (only for showing/hiding menu)
+  // for mobile menu
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   return (
@@ -22,17 +22,16 @@ const Navbar: React.FC = () => {
     >
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          {/* Logo / Title */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="text-2xl font-bold"
           >
-            Portfolio
+            Johnathan's Blogs
           </motion.div>
 
           <div className="flex items-center gap-4">
-            {/* Dark Mode Toggle */}
+            {/* Dark Mode */}
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
               className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
@@ -40,7 +39,7 @@ const Navbar: React.FC = () => {
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Menu */}
             <button
               className="md:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -48,7 +47,7 @@ const Navbar: React.FC = () => {
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
 
-            {/* Desktop Nav Buttons */}
+            {/* Nav Buttons */}
             <div className="hidden md:flex space-x-8">
               {['home', 'about', 'blog', 'projects'].map((section) => (
                 <button

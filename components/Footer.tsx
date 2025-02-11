@@ -1,4 +1,3 @@
-// components/Footer.tsx
 import { useGlobalContext } from "@/context/GlobalContext";
 import React from "react"
 import { AiOutlineGithub, AiOutlineLinkedin } from "react-icons/ai"

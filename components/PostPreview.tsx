@@ -1,4 +1,3 @@
-// components/PostPreview.tsx
 import React from "react";
 import Link from "next/link";
 import { PostMetadata } from "./getPostMetadata";
@@ -7,7 +6,7 @@ export default function PostPreview({ title, subtitle, date, slug }: PostMetadat
   return (
     <div className="border border-slate-300 p-4 rounded-md shadow-sm mb-4 bg-white dark:bg-gray-800">
       <p className="text-xs text-slate-400">{date}</p>
-      {/* Clicking the title or "Read more" goes to /blog/[slug] */}
+      {/* clicking goes to blog */}
       <Link href={`/blog/${slug}`}>
         <h2 className="text-xl text-black font-bold hover:underline cursor-pointer">
           {title}
