@@ -9,6 +9,7 @@ import ProjectsHome from "@/components/Projects";
 import BlogHome from "@/components/Blog";
 import getPostMetadata, { PostMetadata } from "@/components/getPostMetadata";   
 import MouseTrailRipple from '@/components/MouseTrailRipple';
+import { AiOutlineGithub, AiOutlineLinkedin } from 'react-icons/ai';
 
 interface HomePageProps {
     posts: PostMetadata[];
@@ -121,6 +122,28 @@ export default function HomePage({ posts }: HomePageProps) {
                 transition={{ delay: 0.8 }}
                 className="flex justify-center space-x-4"
               >
+                {/* GitHub Link */}
+                <a
+                    href="https://github.com/Dirtblob"
+                    rel="noreferrer"
+                    target="_blank"
+                >
+                    <AiOutlineGithub
+                    className="hover:-translate-y-1 transition-transform cursor-pointer text-neutral-500 dark:text-neutral-100 ml-3"
+                    size={30}
+                    />
+                </a>
+                {/* LinkedIn Link */}
+                <a
+                    href="https://www.linkedin.com/in/johnathan-zhang/"
+                    rel="noreferrer"
+                    target="_blank"
+                >
+                    <AiOutlineLinkedin
+                    className="hover:-translate-y-1 transition-transform cursor-pointer text-neutral-500 dark:text-neutral-100"
+                    size={30}
+                    />
+                </a>
               </motion.div>
             </div>
           </motion.section>

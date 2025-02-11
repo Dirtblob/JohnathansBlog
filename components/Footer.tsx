@@ -20,7 +20,7 @@ export default function Footer() {
             <span>© Johnathan Zhang</span>
             {/* GitHub Link */}
             <a
-              href="https://github.com/AnomalousIdentity"
+              href="https://github.com/Dirtblob"
               rel="noreferrer"
               target="_blank"
             >

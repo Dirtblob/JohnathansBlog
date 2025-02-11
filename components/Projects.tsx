@@ -10,14 +10,14 @@ const projects = [
     description:
       "Johnathan's Blogs is my personal website where I blog and reflect on my own experiences and share insights that I've learned.",
     image: "/website.png",
-    github: "https://github.com/AnomalousIdentity/JohnathansBlog",
+    github: "https://github.com/Dirtblob/JohnathansBlog",
   },
   {
     name: "Counterfactual Data Analysis",
     description:
       "CDA is a data science research project that is able to extract data from medical data and use the counterfactual method to predict the populations most affected based off 3 attributes using the Wilcoxon sign-ranked test.",
     image: "/cda.jpg",
-    github: "https://github.com/AnomalousIdentity/counterfactual-data-analysis",
+    github: "https://github.com/Dirtblob/counterfactual-data-analysis",
   },
 ];
 

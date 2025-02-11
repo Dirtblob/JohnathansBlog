@@ -13,8 +13,8 @@ export default function RootLayout({children, title = 'Portfolio'}: LayoutProps)
     <>
       <Head>
         <title>{title}</title>
-        <meta name="description" content="A portfolio website" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="Johnathan's Portfolio and Blogs" />
+        <link rel="icon" type="image/x-icon" href="/fav.ico" />
       </Head>
 
       <Navbar />
